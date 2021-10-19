@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const User  = require('../models/user.model.js');
+const { User }  = require('../models');
 
 
 const getall = async (req, res) => {
@@ -10,7 +10,6 @@ const getall = async (req, res) => {
     User.countDocuments({ status: true}),
     User.find({ status: true}).skip(Number(skip)).limit(Number(limit))
   ])
-  console.log('getall')
   res.json({
     total,
     users
@@ -48,7 +47,7 @@ const update = async (req, res) => {
     data.password = bcrypt.hashSync(password, salt);
   }
 
-  const user = await User.findByIdAndUpdate(id, data);
+  const user = await User.findByIdAndUpdate(id, data, { new: true });
 
   res.json({
     user
@@ -59,7 +58,7 @@ const remove = async (req, res) => {
 
   const { id } = req.params;
   // const user = await User.findByIdAndDelete(id)
-  const user = await User.findByIdAndUpdate(id, { status: false });
+  const user = await User.findByIdAndUpdate(id, { status: false }, { new: true });
   res.json({
     user
   })

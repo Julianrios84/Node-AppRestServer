@@ -1,5 +1,5 @@
-const { verifyToken } = require("../helpers/token.helper");
-const User = require("../models/user.model");
+const { verifyToken } = require("../helpers");
+const { User } = require("../models");
 
 const validAuth = async (req, res, next) => {
   try {
@@ -13,7 +13,6 @@ const validAuth = async (req, res, next) => {
     const { uid } = await verifyToken(token);
     if (uid) {
       const user = await User.findById(uid);
-
       if(!user) {
         return res.status(401).json({ message: "You do not have authorization"});
       }

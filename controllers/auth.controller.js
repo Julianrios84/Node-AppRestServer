@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const { generateToken, verifyTokenGoogle } = require('../helpers/token.helper')
-const User = require("../models/user.model")
+const { generateToken, verifyTokenGoogle } = require('../helpers')
+const { User } = require("../models")
 
 const signIn = async (req, res) => {
 
