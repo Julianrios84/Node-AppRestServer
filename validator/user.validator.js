@@ -1,6 +1,6 @@
 const { check } = require('express-validator')
-const { isRoleValidate, existsEmail, existsID } = require('../helpers/dbvalidators.helper')
-const { validator } = require('../helpers/validator.helper')
+const { isRoleValidate, existsEmail, existsID } = require('../helpers')
+const { validator } = require('../middlewares')
 
 const validateCreate = [
   check('name', 'the name is required')

@@ -1,14 +1,5 @@
 const { validationResult } = require('express-validator');
 
-// const validator = (req, res, next) => {
-//   const errors = validationResult(req)
-//   if(!errors.isEmpty()){
-//     return res.status(400).json(errors)
-//   }
-  
-//   next();
-// }
-
 const validator = (req, res, next) => {
   try {
       validationResult(req).throw()
@@ -19,6 +10,16 @@ const validator = (req, res, next) => {
   }
 }
 
+const validFieldArchive = (req, res, next) => {
+  if(!req.files || Object.keys(req.files).length === 0 || !req.files.archive) {
+    return res.status(400).json({
+      message: 'No files were uploaded.'
+    })
+  }
+  next()
+}
+
+
 module.exports = {
-  validator
+  validator, validFieldArchive
 }

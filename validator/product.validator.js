@@ -1,5 +1,6 @@
 const { check } = require("express-validator");
-const { validator, existsProductID, existsCategoryID } = require("../helpers");
+const { existsProductID, existsCategoryID } = require("../helpers");
+const { validator } = require('../middlewares')
 
 const validID = [
   check("id")

@@ -1,6 +1,5 @@
 const { check } = require('express-validator')
-const { validator } = require('../helpers/validator.helper')
-const { existsEmail, userIsActive } = require('../helpers/dbvalidators.helper')
+const { validator } = require('../middlewares')
 
 const validateSignIn = [
   check('email')
